@@ -1,4 +1,4 @@
-package org.apache.maven.archetypes.labxpertproject.entitiy;
+package org.apache.maven.archetypes.labxpertproject.entitiy.model;
 
 import lombok.Data;
 import org.apache.maven.archetypes.labxpertproject.entitiy.enums.RoleDutilisateur;
@@ -29,9 +29,5 @@ public class Utilisateur {
 
     @Column(name = "informationsPersonalises")
     private String informationsPersonalises;
-
-
-
-
 
 }

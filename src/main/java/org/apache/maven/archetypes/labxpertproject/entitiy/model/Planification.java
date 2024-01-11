@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +19,7 @@ public class Planification {
     private Long planificationId; // Use camelCase for field names
 
     @OneToMany(mappedBy = "planification")
-    private List<Analyse> analyses;
+    private List<Analyse> analyses = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "utilisateur_id")

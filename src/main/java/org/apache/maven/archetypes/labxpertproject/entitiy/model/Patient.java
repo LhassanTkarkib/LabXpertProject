@@ -35,6 +35,6 @@ public class Patient {
     @OneToMany(mappedBy = "patient")
     private List<Analyse> analyseHistory;
 
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "patient")
     private List<Echantillon> echantillons;
 }

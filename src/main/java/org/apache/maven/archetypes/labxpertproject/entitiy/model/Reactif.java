@@ -24,9 +24,6 @@ public class Reactif {
     @Column(name = "quantite")
     private int quantite; // Assuming it represents a numerical quantity
 
-    @Column(name = "unite")
-    private String unite;
-
     @Column(name = "dateDeexpiration")
     private String dateDeExpiration; // Use camelCase for field names
 

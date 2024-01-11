@@ -9,23 +9,23 @@ import javax.persistence.*;
 @Data
 @Table(name = "resultat")
 public class Resultat {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "your_sequence_name")
     @SequenceGenerator(name = "your_sequence_name", sequenceName = "your_sequence_name", allocationSize = 1)
-    private Long id;
+    private Long resultatId; // Use camelCase for field names
 
     @Column(name = "resultat")
     private String resultat;
 
-    @Column(name = "unitedeMesure")
-    private String unitedeMesure;
+    @Column(name = "uniteDeMesure") // Use camelCase for field names
+    private String uniteDeMesure;
 
-    @Column(name = "StatutDeResultat")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "statutDeResultat")
     private StatutDeResultat statutDeResultat;
 
     @ManyToOne
-    @JoinColumn(name = "id_analyse")
+    @JoinColumn(name = "analyse_id")
     private Analyse analyse;
-
-
 }

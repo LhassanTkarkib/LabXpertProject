@@ -1,51 +1,55 @@
 package org.apache.maven.archetypes.labxpertproject.entitiy.model;
 
-
 import lombok.Data;
 import org.apache.maven.archetypes.labxpertproject.entitiy.enums.StatutDanalyse;
 
 import javax.persistence.*;
-import java.util.*;
-import java.time.*;
-
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
 @Table(name = "analyse")
 public class Analyse {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "your_sequence_name")
     @SequenceGenerator(name = "your_sequence_name", sequenceName = "your_sequence_name", allocationSize = 1)
-    private Long id;
+    @Column(name = "analyse_id") // Specify the column name if it's different from the field name
+    private Long analyseId; // Use camelCase for field names
 
     @ManyToOne
-    @JoinColumn(name = "id_planification")
+    @JoinColumn(name = "planification_id")
     private Planification planification;
 
     @OneToMany(mappedBy = "analyse")
-    private ArrayList<Resultat> resultats;
+    private List<Resultat> resultats;
 
     @ManyToOne
-    @JoinColumn(name = "id_echantillon")
+    @JoinColumn(name = "echantillon_id")
     private Echantillon echantillon;
 
     @ManyToOne
-    @JoinColumn(name = "id_utilisateur")
+    @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
 
-    @OneToMany(mappedBy = "analyse")
-    private ArrayList<Réactif> réactifs;
+    @OneToMany(mappedBy = "analyse", cascade = CascadeType.ALL)
+    private List<Reactif> reactifs;
 
     @Column(name = "DateDebutAnalyse")
-    LocalDate DateDebutAnalyse;
+    private LocalDate dateDebutAnalyse;
 
     @Column(name = "DateFinAnalyse")
-    LocalDate DateFinAnalyse;
+    private LocalDate dateFinAnalyse;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "EtatAnalyse")
-    StatutDanalyse EtatAnalyse;
+    private StatutDanalyse etatAnalyse;
 
     @Column(name = "Commentaire")
-    String Commentaire;
+    private String commentaire;
 
+    @ManyToOne
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
 }

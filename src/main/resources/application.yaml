@@ -5,5 +5,11 @@ spring:
     password: 50145014
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      format_sql: true
     show-sql: true
+logging:
+  level:
+    org:
+      springframework=DEBUG: DEBUG

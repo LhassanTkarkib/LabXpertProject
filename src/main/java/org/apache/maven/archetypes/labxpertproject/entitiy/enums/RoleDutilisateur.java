@@ -2,7 +2,7 @@ package org.apache.maven.archetypes.labxpertproject.entitiy.enums;
 
 public enum RoleDutilisateur {
 
-    TCHNICIEN,
+    TECHNICIEN,
     ADMINISTRATEUR,
     RESPONSABLE_DE_LABORATOIRE,
 }

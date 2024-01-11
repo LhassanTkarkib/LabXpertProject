@@ -1,6 +1,7 @@
 package org.apache.maven.archetypes.labxpertproject.repository;
 
 import org.apache.maven.archetypes.labxpertproject.LabXpertProjectApplication;
+import org.apache.maven.archetypes.labxpertproject.entitiy.enums.RoleDutilisateur;
 import org.apache.maven.archetypes.labxpertproject.entitiy.model.*;
 import org.apache.maven.archetypes.labxpertproject.entitiy.enums.StatutDanalyse;
 
@@ -29,15 +30,11 @@ class AnalyseRepositoryTest {
     @Autowired
     EchantillonRepository echantillonRepository;
 
-
     Analyse testAnalyse;
     Utilisateur testUtilisateur;
     Planification testPlanification;
     Echantillon testEchantillon;
     Patient testPatient;
-
-
-
 
 
     @BeforeEach
@@ -49,17 +46,22 @@ class AnalyseRepositoryTest {
         testAnalyse.setEtatAnalyse(StatutDanalyse.EN_ATTENTE);
         testAnalyse.setCommentaire("Test Comment");
 
+
         // Create a Utilisateur entity to associate with the Analyse entity
         testUtilisateur = new Utilisateur();
         testUtilisateur.setNomUtilisateur("testUser");
         testUtilisateur.setEmail("test@example.com");
         testUtilisateur.setPassword("password123");
+        testUtilisateur.setRoleDutilisateur(RoleDutilisateur.TECHNICIEN);
         testUtilisateur = utilisateurRepository.save(testUtilisateur);
 
         testAnalyse.setUtilisateur(testUtilisateur);
 
         // Create a Planification entity to associate with the Analyse entity
         testPlanification = new Planification();
+        testPlanification.setDateDebutPlanification(LocalDate.now());
+        testPlanification.setDateFinPlanification(LocalDate.now().plusDays(14));
+//        testPlanification.setUtilisateur(testUtilisateur);
         testPlanification = PlanificationRepository.save(testPlanification);
 
         testAnalyse.setPlanification(testPlanification);
@@ -75,8 +77,6 @@ class AnalyseRepositoryTest {
         testPatient = PatientRepository.save(testPatient);
 
         testAnalyse.setPatient(testPatient);
-
-
         testAnalyse = analyseRepository.save(testAnalyse);
     }
 
@@ -117,8 +117,7 @@ class AnalyseRepositoryTest {
         PatientRepository.deleteById(testPatient.getPatientId());
         Analyse deletedAnalyse = analyseRepository.findById(testAnalyse.getAnalyseId()).orElse(null);
         assertThat(deletedAnalyse).isNull();
-//        Analyse deletedAnalyse = analyseRepository.findById(testAnalyse.getAnalyseId()).orElse(null);
-//        assertThat(deletedAnalyse).isNull();
+
     }
 
 

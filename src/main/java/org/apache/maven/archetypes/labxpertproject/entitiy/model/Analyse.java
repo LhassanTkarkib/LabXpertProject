@@ -5,6 +5,7 @@ import org.apache.maven.archetypes.labxpertproject.entitiy.enums.StatutDanalyse;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,7 +29,7 @@ public class Analyse {
     private LocalDate dateFinAnalyse;
 
     @OneToMany(mappedBy = "analyse")
-    private List<Resultat> resultats;
+    private List<Resultat> resultats = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     @Column(name = "EtatAnalyse")

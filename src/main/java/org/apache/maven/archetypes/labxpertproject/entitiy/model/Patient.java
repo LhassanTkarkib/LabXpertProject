@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -33,8 +34,8 @@ public class Patient {
     private String telephone;
 
     @OneToMany(mappedBy = "patient")
-    private List<Analyse> analyseHistory;
+    private List<Analyse> analyseHistory = new ArrayList<>();
 
     @OneToMany(mappedBy = "patient")
-    private List<Echantillon> echantillons;
+    private List<Echantillon> echantillons = new ArrayList<>();
 }

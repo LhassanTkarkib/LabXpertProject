@@ -13,7 +13,7 @@ public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "your_sequence_name")
     @SequenceGenerator(name = "your_sequence_name", sequenceName = "your_sequence_name", allocationSize = 1)
-    private Long utilisateurId; // Use camelCase for field names
+    private Long utilisateurId;
 
     @Column(name = "nomutilisateur")
     private String nomUtilisateur;
@@ -22,12 +22,11 @@ public class Utilisateur {
     private String email;
 
     @Column(name = "password")
-    private String password; // Consider using encryption or hashing
-
+    private String password;
     @Enumerated(EnumType.STRING)
     @Column(name = "roleDutilisateur")
     private RoleDutilisateur roleDutilisateur;
 
-    @Column(name = "informationsPersonnalises") // Use camelCase for field names
+    @Column(name = "informationsPersonnalises")
     private String InformationsPersonalises;
 }

@@ -13,8 +13,8 @@ public class Echantillon {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "your_sequence_name")
     @SequenceGenerator(name = "your_sequence_name", sequenceName = "your_sequence_name", allocationSize = 1)
-    @Column(name = "echantillon_id") // Specify the column name if it's different from the field name
-    private Long echantillonId; // Use camelCase for field names
+    @Column(name = "echantillon_id")
+    private Long echantillonId;
 
     @ManyToOne
     @JoinColumn(name = "patient_id")

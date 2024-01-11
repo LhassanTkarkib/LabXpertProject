@@ -12,20 +12,20 @@ public class Reactif {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "your_sequence_name")
     @SequenceGenerator(name = "your_sequence_name", sequenceName = "your_sequence_name", allocationSize = 1)
-    @Column(name = "reactif_id") // Specify the column name if it's different from the field name
-    private Long reactifId; // Use camelCase for field names
+    @Column(name = "reactif_id")
+    private Long reactifId;
 
     @Column(name = "nom")
     private String nom;
 
     @Column(name = "Description")
-    private String description; // Use camelCase for field names
+    private String description;
 
     @Column(name = "quantite")
-    private int quantite; // Assuming it represents a numerical quantity
+    private int quantite;
 
     @Column(name = "dateDeexpiration")
-    private String dateDeExpiration; // Use camelCase for field names
+    private String dateDeExpiration;
 
     @Column(name = "fournisseur")
     private String fournisseur;

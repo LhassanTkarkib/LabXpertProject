@@ -61,7 +61,7 @@ class AnalyseRepositoryTest {
         testPlanification = new Planification();
         testPlanification.setDateDebutPlanification(LocalDate.now());
         testPlanification.setDateFinPlanification(LocalDate.now().plusDays(14));
-//        testPlanification.setUtilisateur(testUtilisateur);
+//todo:        testPlanification.setUtilisateur(testUtilisateur);
         testPlanification = PlanificationRepository.save(testPlanification);
 
         testAnalyse.setPlanification(testPlanification);

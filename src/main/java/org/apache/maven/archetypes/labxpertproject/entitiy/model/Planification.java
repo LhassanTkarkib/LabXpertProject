@@ -15,8 +15,8 @@ public class Planification {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "your_sequence_name")
     @SequenceGenerator(name = "your_sequence_name", sequenceName = "your_sequence_name", allocationSize = 1)
-    @Column(name = "planification_id") // Specify the column name if it's different from the field name
-    private Long planificationId; // Use camelCase for field names
+    @Column(name = "planification_id")
+    private Long planificationId;
 
     @OneToMany(mappedBy = "planification")
     private List<Analyse> analyses = new ArrayList<>();

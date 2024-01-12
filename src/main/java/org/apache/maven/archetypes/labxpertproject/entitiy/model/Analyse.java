@@ -18,8 +18,8 @@ public class Analyse {
     @SequenceGenerator(name = "your_sequence_name", sequenceName = "your_sequence_name", allocationSize = 1)
     private Long analyseId;
 
-    @ManyToOne
-    @JoinColumn(name = "utilisateur_id")
+    @ManyToOne (cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "utilisateur_id" )
     private Utilisateur utilisateur;
 
     @Column(name = "DateDebutAnalyse")
@@ -28,8 +28,8 @@ public class Analyse {
     @Column(name = "DateFinAnalyse")
     private LocalDate dateFinAnalyse;
 
-    @OneToMany(mappedBy = "analyse")
-    private List<Resultat> resultats = new ArrayList<>();
+    @OneToMany(mappedBy = "analyse" ,cascade = CascadeType.REMOVE)
+    private List<Resultat> resultats = new ArrayList<>()   ;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "EtatAnalyse")
@@ -38,18 +38,18 @@ public class Analyse {
     @Column(name = "Commentaire")
     private String commentaire;
 
-    @ManyToOne
+    @ManyToOne  (cascade = CascadeType.REMOVE)
     @JoinColumn(name = "planification_id")
     private Planification planification;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.REMOVE)
     @JoinColumn(name = "echantillon_id")
     private Echantillon echantillon;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.REMOVE)
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    @OneToMany(mappedBy = "analyse")
+    @OneToMany(mappedBy = "analyse" ,cascade = CascadeType.REMOVE)
     private List<Reactif> reactifs;
 }

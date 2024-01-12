@@ -13,12 +13,12 @@ public class Resultat {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "your_sequence_name")
     @SequenceGenerator(name = "your_sequence_name", sequenceName = "your_sequence_name", allocationSize = 1)
-    private Long resultatId; // Use camelCase for field names
+    private Long resultatId;
 
     @Column(name = "resultat")
     private String resultat;
 
-    @Column(name = "uniteDeMesure") // Use camelCase for field names
+    @Column(name = "uniteDeMesure")
     private String uniteDeMesure;
 
     @Enumerated(EnumType.STRING)

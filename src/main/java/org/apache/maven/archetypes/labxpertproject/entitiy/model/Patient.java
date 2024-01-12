@@ -15,8 +15,8 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "your_sequence_name")
     @SequenceGenerator(name = "your_sequence_name", sequenceName = "your_sequence_name", allocationSize = 1)
-    @Column(name = "patient_id") // Specify the column name if it's different from the field name
-    private Long patientId; // Use camelCase for field names
+    @Column(name = "patient_id")
+    private Long patientId;
 
     @Column(name = "nom")
     private String nom;
@@ -33,9 +33,9 @@ public class Patient {
     @Column(name = "telephone")
     private String telephone;
 
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(mappedBy = "patient" ,cascade = CascadeType.REMOVE)
     private List<Analyse> analyseHistory = new ArrayList<>();
 
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(mappedBy = "patient" ,cascade = CascadeType.REMOVE)
     private List<Echantillon> echantillons = new ArrayList<>();
 }

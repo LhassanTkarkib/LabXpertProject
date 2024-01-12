@@ -36,7 +36,6 @@ class AnalyseRepositoryTest {
     Echantillon testEchantillon;
     Patient testPatient;
 
-
     @BeforeEach
     void setUp() {
         // Create a Analyse entity to test
@@ -55,27 +54,31 @@ class AnalyseRepositoryTest {
         testUtilisateur.setRoleDutilisateur(RoleDutilisateur.TECHNICIEN);
         testUtilisateur = utilisateurRepository.save(testUtilisateur);
 
-        testAnalyse.setUtilisateur(testUtilisateur);
+
 
         // Create a Planification entity to associate with the Analyse entity
         testPlanification = new Planification();
         testPlanification.setDateDebutPlanification(LocalDate.now());
         testPlanification.setDateFinPlanification(LocalDate.now().plusDays(14));
-//        testPlanification.setUtilisateur(testUtilisateur);
+        //todo:testPlanification.setUtilisateur(testUtilisateur);
         testPlanification = PlanificationRepository.save(testPlanification);
 
-        testAnalyse.setPlanification(testPlanification);
+
 
         // Create a Echantillon entity to associate with the Analyse entity
         testEchantillon = new Echantillon();
         testEchantillon = echantillonRepository.save(testEchantillon);
 
-        testAnalyse.setEchantillon(testEchantillon);
+
 
         // Create a Patient entity to associate with the Analyse entity
         testPatient = new Patient();
         testPatient = PatientRepository.save(testPatient);
 
+
+        testAnalyse.setUtilisateur(testUtilisateur);
+        testAnalyse.setPlanification(testPlanification);
+        testAnalyse.setEchantillon(testEchantillon);
         testAnalyse.setPatient(testPatient);
         testAnalyse = analyseRepository.save(testAnalyse);
     }
@@ -111,10 +114,6 @@ class AnalyseRepositoryTest {
     @Test
     void testDeleteAnalyse() {
         analyseRepository.deleteById(testAnalyse.getAnalyseId());
-        utilisateurRepository.deleteById(testUtilisateur.getUtilisateurId());
-        PlanificationRepository.deleteById(testPlanification.getPlanificationId());
-        echantillonRepository.deleteById(testEchantillon.getEchantillonId());
-        PatientRepository.deleteById(testPatient.getPatientId());
         Analyse deletedAnalyse = analyseRepository.findById(testAnalyse.getAnalyseId()).orElse(null);
         assertThat(deletedAnalyse).isNull();
 
@@ -127,10 +126,7 @@ class AnalyseRepositoryTest {
         Analyse deletedAnalyse = analyseRepository.findById(testAnalyse.getAnalyseId()).orElse(null);
         if (deletedAnalyse != null) {
             analyseRepository.deleteById(testAnalyse.getAnalyseId());
-            utilisateurRepository.deleteById(testUtilisateur.getUtilisateurId());
-            PlanificationRepository.deleteById(testPlanification.getPlanificationId());
-            echantillonRepository.deleteById(testEchantillon.getEchantillonId());
-            PatientRepository.deleteById(testPatient.getPatientId());
+
         }else {
             System.out.println("Analyse not found.");
         }

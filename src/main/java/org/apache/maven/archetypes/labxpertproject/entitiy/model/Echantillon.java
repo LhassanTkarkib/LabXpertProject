@@ -16,11 +16,11 @@ public class Echantillon {
     @Column(name = "echantillon_id")
     private Long echantillonId;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.REMOVE)
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    @OneToMany(mappedBy = "echantillon")
+    @OneToMany(mappedBy = "echantillon" ,cascade = CascadeType.REMOVE)
     private List<Analyse> analyses;
 
 

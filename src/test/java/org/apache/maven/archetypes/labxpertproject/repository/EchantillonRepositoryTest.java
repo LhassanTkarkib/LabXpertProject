@@ -78,7 +78,6 @@ class EchantillonRepositoryTest {
     @Test
     void testDeleteEchantillon() {
         echantillonRepository.deleteById(testEchantillon.getEchantillonId());
-        patientRepository.deleteById(testPatient.getPatientId());
         Echantillon deletedEchantillon = echantillonRepository.findById(testEchantillon.getEchantillonId()).orElse(null);
         assertThat(deletedEchantillon).isNull();
     }
@@ -88,7 +87,6 @@ class EchantillonRepositoryTest {
         Echantillon deletedEchantillon = echantillonRepository.findById(testEchantillon.getEchantillonId()).orElse(null);
         if (deletedEchantillon != null) {
             echantillonRepository.deleteById(testEchantillon.getEchantillonId());
-            patientRepository.deleteById(testPatient.getPatientId());
         } else {
             System.out.println("Echantillon not found.");
         }

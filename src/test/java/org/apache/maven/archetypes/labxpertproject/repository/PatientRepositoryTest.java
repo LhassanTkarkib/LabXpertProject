@@ -96,8 +96,7 @@ class PatientRepositoryTest {
 
     @Test
     void testDeletePatient() {
-        analyseRepository.deleteById(testAnalyse.getAnalyseId());
-        echantillonRepository.deleteById(testEchantillon.getEchantillonId());
+
         patientRepository.deleteById(testPatient.getPatientId());
 
         Patient deletedPatient = patientRepository.findById(testPatient.getPatientId()).orElse(null);
@@ -106,8 +105,7 @@ class PatientRepositoryTest {
 
     @AfterEach
     void tearDown() {
-        analyseRepository.deleteAll();
-        echantillonRepository.deleteAll();
+
         patientRepository.deleteAll();
     }
 

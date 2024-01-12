@@ -93,6 +93,7 @@ class PlanificationRepositoryTest {
 
     @Test
     void testDeletePlanification() {
+        analyseRepository.deleteById(testAnalyse.getAnalyseId());
         planificationRepository.deleteById(testPlanification.getPlanificationId());
 
         Planification deletedPlanification = planificationRepository.findById(testPlanification.getPlanificationId()).orElse(null);
@@ -101,8 +102,10 @@ class PlanificationRepositoryTest {
 
     @AfterEach
     void tearDown() {
-        planificationRepository.deleteAll();
-        utilisateurRepository.deleteAll();
-        analyseRepository.deleteAll();
+        if (planificationRepository.findById(testPlanification.getPlanificationId()).orElse(null) != null) {
+            analyseRepository.deleteById(testAnalyse.getAnalyseId());
+            planificationRepository.deleteById(testPlanification.getPlanificationId());
+        }
     }
+
 }

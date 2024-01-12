@@ -30,7 +30,7 @@ public class Reactif {
     @Column(name = "fournisseur")
     private String fournisseur;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.REMOVE)
     @JoinColumn(name = "analyse_id")
     private Analyse analyse;
 

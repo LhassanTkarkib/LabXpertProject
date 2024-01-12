@@ -19,6 +19,7 @@ class UtilisateurRepositoryTest {
 
     @Autowired
     private UtilisateurRepository utilisateurRepository;
+
     private Utilisateur testUtilisateur;
 
     @BeforeEach

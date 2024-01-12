@@ -18,10 +18,10 @@ public class Planification {
     @Column(name = "planification_id")
     private Long planificationId;
 
-    @OneToMany(mappedBy = "planification")
+    @OneToMany(mappedBy = "planification" ,cascade = CascadeType.REMOVE)
     private List<Analyse> analyses = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.REMOVE)
     @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
 

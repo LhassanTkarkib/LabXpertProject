@@ -45,6 +45,7 @@ class ReactifRepositoryTest {
         testReactif.setQuantite(10);
         testReactif.setDateDeExpiration("2024-12-31");
         testReactif.setFournisseur("Test Supplier");
+
         testReactif.setAnalyse(testAnalyse);
         testReactif = reactifRepository.save(testReactif);
     }
@@ -88,7 +89,10 @@ class ReactifRepositoryTest {
 
     @AfterEach
     void tearDown() {
-        reactifRepository.deleteAll();
-        analyseRepository.deleteAll();
+        Reactif reactiftobedeleted = reactifRepository.findById(testReactif.getReactifId()).orElse(null);
+        if ( reactiftobedeleted != null) {
+            reactifRepository.deleteById(testReactif.getReactifId());
+        }
+
     }
 }

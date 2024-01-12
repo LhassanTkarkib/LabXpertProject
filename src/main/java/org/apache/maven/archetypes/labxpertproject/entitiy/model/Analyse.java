@@ -29,7 +29,7 @@ public class Analyse {
     private LocalDate dateFinAnalyse;
 
     @OneToMany(mappedBy = "analyse" ,cascade = CascadeType.REMOVE)
-    private List<Resultat> resultats = new ArrayList<>()   ;
+    private List<SousAnalyse> sousAnalyses = new ArrayList<>()   ;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "EtatAnalyse")

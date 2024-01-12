@@ -1,8 +1,10 @@
 package org.apache.maven.archetypes.labxpertproject.repository;
 
 import org.apache.maven.archetypes.labxpertproject.LabXpertProjectApplication;
+import org.apache.maven.archetypes.labxpertproject.entitiy.model.Analyse;
 import org.apache.maven.archetypes.labxpertproject.entitiy.model.Echantillon;
 import org.apache.maven.archetypes.labxpertproject.entitiy.model.Patient;
+import org.apache.maven.archetypes.labxpertproject.entitiy.enums.StatutDanalyse;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,9 +25,12 @@ class EchantillonRepositoryTest {
     EchantillonRepository echantillonRepository;
     @Autowired
     PatientRepository patientRepository;
+    @Autowired
+    AnalyseRepository analyseRepository;
 
     Echantillon testEchantillon;
     Patient testPatient;
+    Analyse testAnalyse;
 
     @BeforeEach
     void setUp() {
@@ -43,6 +48,18 @@ class EchantillonRepositoryTest {
         testEchantillon.setDatePrelevement(LocalDate.now());
         testEchantillon.setPatient(testPatient);
         testEchantillon = echantillonRepository.save(testEchantillon);
+
+        // Create an Analyse entity to associate with the Echantillon entity
+        testAnalyse = new Analyse();
+        testAnalyse.setDateDebutAnalyse(LocalDate.now());
+        testAnalyse.setDateFinAnalyse(LocalDate.now().plusDays(7));
+        testAnalyse.setEtatAnalyse(StatutDanalyse.EN_ATTENTE);
+        testAnalyse.setCommentaire("Test Comment");
+        testAnalyse.setEchantillon(testEchantillon);
+        testAnalyse = analyseRepository.save(testAnalyse);
+
+
+
     }
 
     @Test
